@@ -4,6 +4,13 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<properties resource="jdbc.properties"></properties>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	<typeAliases>
+<!-- 		<typeAlias type="mp.bean.Dept" alias="ooo" /> -->
+		<package name="mp.bean" />
+	</typeAliases>
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
@@ -16,6 +23,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		</environment>
 	</environments>
 	<mappers>
+<!-- 		<package name="mp.xml"/> -->
 		<mapper resource="mp/xml/Dept.xml" />
+		<mapper resource="mp/xml/Emp.xml" />
 	</mappers>
 </configuration>

@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import mp.bean.dao.DeptMapper;
+import mp.bean.dao.EmpMapper;
 
 public class Test {
 	public static void main(String[] args) {
@@ -23,7 +24,7 @@ public class Test {
 			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
 			sqlSession = factory.openSession();
 			// Dept dept = sqlSession.selectOne("Dept.getDeptById", 40);
-			DeptMapper mapper = sqlSession.getMapper(DeptMapper.class);
+			//DeptMapper mapper = sqlSession.getMapper(DeptMapper.class);
 			
 			/*
 			Dept dept = mapper.getDeptById(40);
@@ -66,9 +67,24 @@ public class Test {
 			System.out.println(mapById);// 找不到為null
 			*/
 			
+			/*
 			Map<Integer, Dept> mapByName = mapper.getMapByName("%O%");
 			System.out.println(mapByName);// 找不到不是null，是空的 map
+			*/
+			
+			EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
+//			List<Emp> emp = mapper.getEmp();
+//			emp.forEach((e)-> {
+//				System.out.println(e.getEmpno());
+//			});
+			Emp empById = mapper.getEmpById(7369);
+			System.out.println(empById.getEmpno());
+			System.out.println(empById.getDeptno());
+			System.out.println(empById.getDept().getDeptNo());
+			System.out.println(empById.getDept().getdName());
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			sqlSession.close();

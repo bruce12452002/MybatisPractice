@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mp.bean.dao.EmpMapper">
+	<select id="getEmp" resultType="mp.bean.Emp">
+		select * from emp
+	</select>
+	
+	<resultMap type="mp.bean.Emp" id="association1">
+		<!-- java bean 和 資料庫名稱一樣可不寫 -->
+		<result column="dname" property="dept.dName"/>
+		<result column="loc" property="dept.loc"/>
+	</resultMap>
+	
+	<resultMap type="mp.bean.Emp" id="association2">
+		<!-- java bean 就算和資料庫名稱一樣也要寫，不寫就是 null -->
+		<id column="empno" property="empno" />
+		<result column="ename" property="ename" />
+		
+		<association property="dept" javaType="mp.bean.Dept">
+			<!-- java bean 就算和資料庫名稱一樣也要寫，不寫就是 null -->
+			<id column="deptNo" property="deptNo" />
+			<result column="dName" property="dName" />
+		</association>
+	</resultMap>
+	
+	<select id="getEmpById" resultMap="association2">
+		select empno, ename, job, mgr, hiredate, sal, comm, e.deptno, 
+			d.dname, d.loc
+		from emp e, dept d 
+		where e.deptno = d.deptno
+		and empno = #{id}
+	</select>
+	
+	
+</mapper>

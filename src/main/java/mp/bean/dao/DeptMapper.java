@@ -24,4 +24,5 @@ public interface DeptMapper {
 	@MapKey("deptNo")
 	public Map<Integer, Dept> getMapByName(String name);
 	
+	public boolean insertDept(String name);
 }
