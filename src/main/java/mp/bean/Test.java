@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import mp.bean.dao.DeptMapper;
+
 public class Test {
 	public static void main(String[] args) {
 		InputStream is = null;
@@ -16,7 +18,9 @@ public class Test {
 			is = Resources.getResourceAsStream("mybatis-config.xml");
 			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
 			sqlSession = factory.openSession();
-			Dept dept = sqlSession.selectOne("Dept.getDeptById", 40);
+			// Dept dept = sqlSession.selectOne("Dept.getDeptById", 40);
+			DeptMapper mapper = sqlSession.getMapper(DeptMapper.class);
+			Dept dept = mapper.getDeptById(40);
 			System.out.println("dept=" + dept);
 			System.out.println("deptNo=" + dept.getDeptNo());
 			System.out.println("dName=" + dept.getdName());
