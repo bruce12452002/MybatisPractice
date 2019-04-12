@@ -2,6 +2,10 @@ package mp.bean;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -20,11 +24,50 @@ public class Test {
 			sqlSession = factory.openSession();
 			// Dept dept = sqlSession.selectOne("Dept.getDeptById", 40);
 			DeptMapper mapper = sqlSession.getMapper(DeptMapper.class);
+			
+			/*
 			Dept dept = mapper.getDeptById(40);
 			System.out.println("dept=" + dept);
 			System.out.println("deptNo=" + dept.getDeptNo());
 			System.out.println("dName=" + dept.getdName());
 			System.out.println("loc=" + dept.getLoc());
+			*/
+			
+			/*
+			Dept dept = mapper.getDeptByIdAndLoc(40, "BOSTON");
+			System.out.println("dept=" + dept);
+			*/
+			
+			/*
+			List<Integer> list = new ArrayList<>();
+			list.add(40);
+			Dept dept = mapper.getDeptByList(list);
+			System.out.println("dept=" + dept);
+			*/
+			
+			/*
+			Map<String, Object> map = new HashMap<>();
+			map.put("xxx", 40);
+			map.put("loc", "BOSTON");
+			Dept dept = mapper.getDeptByMap(map);
+			System.out.println("dept=" + dept);
+			*/
+			
+			/*
+			List<Dept> listByName = mapper.getListByName("%O%");
+			System.out.println(listByName);//找不到不是null，是空的 list
+			listByName.forEach((dept) -> {
+				System.out.println(dept.getdName());
+			});
+			*/
+			
+			/*
+			Map<String, Object> mapById = mapper.getMapById(40);
+			System.out.println(mapById);// 找不到為null
+			*/
+			
+			Map<Integer, Dept> mapByName = mapper.getMapByName("%O%");
+			System.out.println(mapByName);// 找不到不是null，是空的 map
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
