@@ -2,7 +2,7 @@ package mp.bean;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("xxx")
+//@Alias("xxx")
 public class Dept {
 	private int deptNo;
 	private String dName;

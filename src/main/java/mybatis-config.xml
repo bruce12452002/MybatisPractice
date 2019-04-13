@@ -5,10 +5,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
 	<properties resource="jdbc.properties"></properties>
 	<settings>
-		<setting name="jdbcTypeForNull" value="NULL"/>
+		<!-- Oracle 不知道OTHER，所以換成 NULL -->
+		<setting name="jdbcTypeForNull" value="NULL" />
+		<setting name="logImpl" value="LOG4J2" />
 	</settings>
 	<typeAliases>
-<!-- 		<typeAlias type="mp.bean.Dept" alias="ooo" /> -->
+		<typeAlias type="mp.bean.Dept" alias="ooo" />
 		<package name="mp.bean" />
 	</typeAliases>
 	<environments default="development">
@@ -23,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		</environment>
 	</environments>
 	<mappers>
-<!-- 		<package name="mp.xml"/> -->
+		<!-- <package name="src/main/java/mp/xml"/> -->
 		<mapper resource="mp/xml/Dept.xml" />
 		<mapper resource="mp/xml/Emp.xml" />
 	</mappers>
