@@ -4,11 +4,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.MapKey;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import mp.bean.Dept;
 
+//@Mapper
 public interface DeptMapper {
+	//@Select("select * from dept where deptno = #{deptNo}")
 	public Dept getDeptById(int id);
 
 	public Dept getDeptByIdAndLoc(@Param("id") int id, @Param("loc") String loc);

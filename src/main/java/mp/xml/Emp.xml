@@ -23,7 +23,7 @@
 		</association>
 	</resultMap>
 	
-	<select id="getEmpById" resultMap="association2">
+	<select id="getEmpById" resultMap="association1">
 		select empno, ename, job, mgr, hiredate, sal, comm, e.deptno, 
 			d.dname, d.loc
 		from emp e, dept d 
@@ -31,5 +31,13 @@
 		and empno = #{id}
 	</select>
 	
+	<resultMap type="mp.bean.Emp" id="association3">
+		<!-- java bean 和 資料庫名稱一樣可不寫 -->
+		<association property="dept" column="deptno" 
+			select="mp.bean.dao.DeptMapper.getDeptById" />
+	</resultMap>
 	
+	<select id="getEmp2Step" resultMap="association3">
+		select * from emp where empno = #{id}
+	</select>
 </mapper>

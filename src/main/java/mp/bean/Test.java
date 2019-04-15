@@ -24,15 +24,15 @@ public class Test {
 			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
 			sqlSession = factory.openSession();
 			// Dept dept = sqlSession.selectOne("Dept.getDeptById", 40);
-			DeptMapper mapper = sqlSession.getMapper(DeptMapper.class);
+			//DeptMapper mapper = sqlSession.getMapper(DeptMapper.class);
 			
-			
+			/*
 			Dept dept = mapper.getDeptById(40);
 			System.out.println("dept=" + dept);
 			System.out.println("deptNo=" + dept.getDeptNo());
 			System.out.println("dName=" + dept.getdName());
 			System.out.println("loc=" + dept.getLoc());
-			
+			*/
 			
 			/*
 			Dept dept = mapper.getDeptByIdAndLoc(40, "BOSTON");
@@ -72,19 +72,23 @@ public class Test {
 			System.out.println(mapByName);// 找不到不是null，是空的 map
 			*/
 			
-			//EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
+			
+			
+			
+			EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
 //			List<Emp> emp = mapper.getEmp();
 //			emp.forEach((e)-> {
 //				System.out.println(e.getEmpno());
 //			});
 			
-			/*
+			
 			Emp empById = mapper.getEmpById(7369);
+			//Emp empById = mapper.getEmp2Step(7369);
 			System.out.println(empById.getEmpno());
 			System.out.println(empById.getDeptno());
 			System.out.println(empById.getDept().getDeptNo());
 			System.out.println(empById.getDept().getdName());
-			*/
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
