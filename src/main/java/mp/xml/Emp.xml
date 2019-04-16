@@ -34,7 +34,7 @@
 	<resultMap type="mp.bean.Emp" id="association3">
 		<!-- java bean 和 資料庫名稱一樣可不寫 -->
 		<association property="dept" column="deptno" 
-			select="mp.bean.dao.DeptMapper.getDeptById" />
+			select="mp.bean.dao.DeptMapper.getDeptById" fetchType="lazy" /> 
 	</resultMap>
 	
 	<select id="getEmp2Step" resultMap="association3">

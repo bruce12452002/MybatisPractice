@@ -8,6 +8,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<!-- Oracle 不知道OTHER，所以換成 NULL -->
 		<setting name="jdbcTypeForNull" value="NULL" />
 		<setting name="logImpl" value="LOG4J2" />
+<!-- 		<setting name="lazyLoadingEnabled" value="true" /> -->
+<!-- 		<setting name="aggressiveLazyLoading" value="false" /> -->
 	</settings>
 	<typeAliases>
 		<typeAlias type="mp.bean.Dept" alias="ooo" />

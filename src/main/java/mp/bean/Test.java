@@ -82,12 +82,12 @@ public class Test {
 //			});
 			
 			
-			Emp empById = mapper.getEmpById(7369);
-			//Emp empById = mapper.getEmp2Step(7369);
+//			Emp empById = mapper.getEmpById(7369);
+			Emp empById = mapper.getEmp2Step(7369);
 			System.out.println(empById.getEmpno());
 			System.out.println(empById.getDeptno());
-			System.out.println(empById.getDept().getDeptNo());
-			System.out.println(empById.getDept().getdName());
+			//System.out.println(empById.getDept());
+			//System.out.println(empById.getDept().getdName());
 			
 		} catch (IOException e) {
 			e.printStackTrace();
