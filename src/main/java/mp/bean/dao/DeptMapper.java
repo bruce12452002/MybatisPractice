@@ -29,4 +29,8 @@ public interface DeptMapper {
 	public Map<Integer, Dept> getMapByName(String name);
 	
 	public boolean insertDept(String name);
+	
+	public Dept getDeptAndEmpsById(int id);
+	
+	public Dept getDept2Step(int id);
 }

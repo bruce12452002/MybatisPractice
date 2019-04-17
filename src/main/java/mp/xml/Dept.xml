@@ -44,4 +44,43 @@
 		select * from dept
 		where dname like #{name}
 	</select>
+	
+	<resultMap type="ooo" id="collection1">
+		<!-- java bean 就算和資料庫名稱一樣也要寫，不寫就是 null -->
+		<id column="deptno" property="deptNo" />
+		<result column="dname" property="dName" />
+<!-- 		<result column="loc" property="loc" /> -->
+		
+		<collection property="emps" javaType="java.util.Set" ofType="mp.bean.Emp">
+			<!-- java bean 就算和資料庫名稱一樣也要寫，不寫就是 null -->
+			<id column="empno" property="empno" />
+			<result column="ename" property="ename" />
+		</collection>
+	</resultMap>
+	
+	<select id="getDeptAndEmpsById" resultMap="collection1">
+		select empno, ename, job, mgr, hiredate, sal, comm, e.deptno, 
+			d.dname, d.loc
+		from emp e, dept d 
+		where e.deptno = d.deptno
+		and d.deptno = #{id}
+	</select>
+	
+	<resultMap type="ooo" id="collection2">
+		<!-- java bean 和 資料庫名稱一樣可不寫，但關聯字段一定要 -->
+		<id column="deptno" property="deptNo" />
+		<result column="dname" property="dName" />
+<!-- 		<result column="loc" property="loc" /> -->
+		
+		<collection property="emps" select="mp.bean.dao.EmpMapper.getEmpByDeptno" 
+				javaType="java.util.Set" column="deptno" fetchType="lazy">
+			<!-- java bean 和 資料庫名稱一樣可不寫 -->
+			<id column="empno" property="empno" />
+			<result column="ename" property="ename" />
+		</collection>
+	</resultMap>
+	
+	<select id="getDept2Step" resultMap="collection2">
+		select * from dept where deptno = #{id}
+	</select>
 </mapper>

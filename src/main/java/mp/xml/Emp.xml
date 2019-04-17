@@ -40,4 +40,8 @@
 	<select id="getEmp2Step" resultMap="association3">
 		select * from emp where empno = #{id}
 	</select>
+	
+	<select id="getEmpByDeptno" resultType="mp.bean.Emp">
+		select * from emp where deptno = #{id}
+	</select>
 </mapper>

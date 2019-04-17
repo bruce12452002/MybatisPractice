@@ -24,7 +24,7 @@ public class Test {
 			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
 			sqlSession = factory.openSession();
 			// Dept dept = sqlSession.selectOne("Dept.getDeptById", 40);
-			//DeptMapper mapper = sqlSession.getMapper(DeptMapper.class);
+			DeptMapper mapper = sqlSession.getMapper(DeptMapper.class);
 			
 			/*
 			Dept dept = mapper.getDeptById(40);
@@ -72,10 +72,20 @@ public class Test {
 			System.out.println(mapByName);// 找不到不是null，是空的 map
 			*/
 			
+			//Dept deptAndEmp = mapper.getDeptAndEmpsById(10);
+			Dept deptAndEmp = mapper.getDept2Step(10);
+			System.out.println(deptAndEmp.getDeptNo());
+			System.out.println(deptAndEmp.getdName());
+			System.out.println(deptAndEmp.getLoc());
+//			deptAndEmp.getEmps().stream().forEach(data -> {
+//				System.out.println("============");
+//				System.out.println(data.getEname());
+//				System.out.println(data.getJob());
+//			});
 			
 			
 			
-			EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
+			//EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
 //			List<Emp> emp = mapper.getEmp();
 //			emp.forEach((e)-> {
 //				System.out.println(e.getEmpno());
@@ -83,9 +93,9 @@ public class Test {
 			
 			
 //			Emp empById = mapper.getEmpById(7369);
-			Emp empById = mapper.getEmp2Step(7369);
-			System.out.println(empById.getEmpno());
-			System.out.println(empById.getDeptno());
+//			Emp empById = mapper.getEmp2Step(7369);
+//			System.out.println(empById.getEmpno());
+//			System.out.println(empById.getDeptno());
 			//System.out.println(empById.getDept());
 			//System.out.println(empById.getDept().getdName());
 			

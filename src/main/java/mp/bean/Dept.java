@@ -1,5 +1,7 @@
 package mp.bean;
 
+import java.util.Set;
+
 import org.apache.ibatis.type.Alias;
 
 //@Alias("xxx")
@@ -7,6 +9,7 @@ public class Dept {
 	private int deptNo;
 	private String dName;
 	private String loc;
+	private Set<Emp> emps;
 
 	public int getDeptNo() {
 		return deptNo;
@@ -31,4 +34,13 @@ public class Dept {
 	public void setLoc(String loc) {
 		this.loc = loc;
 	}
+
+	public Set<Emp> getEmps() {
+		return emps;
+	}
+
+	public void setEmps(Set<Emp> emps) {
+		this.emps = emps;
+	}
+
 }
