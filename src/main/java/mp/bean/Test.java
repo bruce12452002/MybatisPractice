@@ -35,13 +35,15 @@ public class Test {
 			//Dept dept2 = mapper.getDeptByIdAndLoc(40, "BOSTON");
 			System.out.println(dept1 == dept2);
 			
-			//sqlSession.close();
-			/*
+			sqlSession.close();
+			
 			sqlSession2 = factory.openSession();
 			DeptMapper mapper2 = sqlSession2.getMapper(DeptMapper.class);
-			Dept dept2 = mapper2.getDeptById(40);
-			System.out.println(dept1 == dept2);
-			*/
+			Dept dept3 = mapper2.getDeptById(40);
+			//System.out.println(dept1 == dept3);
+			System.out.println(dept1 == dept3);
+			System.out.println(dept2 == dept3);
+			
 			
 			/*
 			Dept dept = mapper.getDeptById(40);

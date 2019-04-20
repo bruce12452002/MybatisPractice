@@ -1,8 +1,9 @@
 package mp.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Emp {
+public class Emp { //implements Serializable {
 	private Integer empno;
 	private String ename;
 	private String job;
