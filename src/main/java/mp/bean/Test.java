@@ -19,12 +19,28 @@ public class Test {
 	public static void main(String[] args) {
 		InputStream is = null;
 		SqlSession sqlSession = null;
+		SqlSession sqlSession2 = null;
 		try {
 			is = Resources.getResourceAsStream("mybatis-config.xml");
 			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
 			sqlSession = factory.openSession();
 			// Dept dept = sqlSession.selectOne("Dept.getDeptById", 40);
 			DeptMapper mapper = sqlSession.getMapper(DeptMapper.class);
+			
+			//一級快取(SqlSession快取)
+			Dept dept1 = mapper.getDeptById(40);
+			//sqlSession.clearCache();清快取
+			//增刪改操作之後也不會有快取
+			Dept dept2 = mapper.getDeptById(40);
+			//Dept dept2 = mapper.getDeptByIdAndLoc(40, "BOSTON");
+			System.out.println(dept1 == dept2);
+			
+			/*
+			sqlSession2 = factory.openSession();
+			DeptMapper mapper2 = sqlSession2.getMapper(DeptMapper.class);
+			Dept dept2 = mapper2.getDeptById(40);
+			System.out.println(dept1 == dept2);
+			*/
 			
 			/*
 			Dept dept = mapper.getDeptById(40);
@@ -73,10 +89,12 @@ public class Test {
 			*/
 			
 			//Dept deptAndEmp = mapper.getDeptAndEmpsById(10);
+			/*
 			Dept deptAndEmp = mapper.getDept2Step(10);
 			System.out.println(deptAndEmp.getDeptNo());
 			System.out.println(deptAndEmp.getdName());
 			System.out.println(deptAndEmp.getLoc());
+			*/
 //			deptAndEmp.getEmps().stream().forEach(data -> {
 //				System.out.println("============");
 //				System.out.println(data.getEname());
