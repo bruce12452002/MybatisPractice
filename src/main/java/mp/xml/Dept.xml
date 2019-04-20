@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mp.bean.dao.DeptMapper">
+	<cache readOnly="true" />
+
 	<!-- <select id="getDeptById" resultType="xxx"> -->
-	<select id="getDeptById" resultType="mp.bean.Dept" flushCache="true">
+	<select id="getDeptById" resultType="mp.bean.Dept" useCache="false">
 		select * from dept where
 		deptno = #{deptNo}
 	</select>

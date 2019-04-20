@@ -1,11 +1,12 @@
 package mp.bean;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import org.apache.ibatis.type.Alias;
 
 //@Alias("xxx")
-public class Dept {
+public class Dept implements Serializable{
 	private int deptNo;
 	private String dName;
 	private String loc;

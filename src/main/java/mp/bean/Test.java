@@ -29,12 +29,13 @@ public class Test {
 			
 			//一級快取(SqlSession快取)
 			Dept dept1 = mapper.getDeptById(40);
-			//sqlSession.clearCache();清快取
+			//sqlSession.clearCache();清一級快取
 			//增刪改操作之後也不會有快取
 			Dept dept2 = mapper.getDeptById(40);
 			//Dept dept2 = mapper.getDeptByIdAndLoc(40, "BOSTON");
 			System.out.println(dept1 == dept2);
 			
+			//sqlSession.close();
 			/*
 			sqlSession2 = factory.openSession();
 			DeptMapper mapper2 = sqlSession2.getMapper(DeptMapper.class);
