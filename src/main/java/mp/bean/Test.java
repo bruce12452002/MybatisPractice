@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -29,14 +31,15 @@ public class Test {
 			DeptMapper mapper = sqlSession.getMapper(DeptMapper.class);
 
 			// 一級快取(SqlSession快取)
-			Dept dept1 = mapper.getDeptById(40);
+			//Dept dept1 = mapper.getDeptById(40);
 			// sqlSession.clearCache();清一級快取
 			// 增刪改操作之後也不會有快取
-			Dept dept2 = mapper.getDeptById(40);
+			//Dept dept2 = mapper.getDeptById(40);
 			// Dept dept2 = mapper.getDeptByIdAndLoc(40, "BOSTON");
-			System.out.println(dept1 == dept2);
+			//System.out.println(dept1 == dept2);
 
-			
+			// 二級快取
+			/*
 			sqlSession.close();
 
 			sqlSession2 = factory.openSession();
@@ -45,7 +48,7 @@ public class Test {
 			// System.out.println(dept1 == dept3);
 			System.out.println(dept1 == dept3);
 			System.out.println(dept2 == dept3);
-			 
+			 */
 			
 			/*
 			 * Dept dept = mapper.getDeptById(40); System.out.println("dept=" + dept);
@@ -97,6 +100,38 @@ public class Test {
 //				System.out.println(data.getEname());
 //				System.out.println(data.getJob());
 //			});
+			
+			
+			// bind tag
+			/*
+			Dept d = new Dept();
+			d.setdName("O");
+			List<Dept> bind = mapper.getDeptsByDeptUseBind(d);
+			bind.stream().forEach(x -> {
+				System.out.println(x.getdName());
+			});
+			*/
+			
+			Map<String, String> map = new HashMap<>();
+			map.put("kkk", "O");
+			List<Dept> bind = mapper.getDeptsByMapUseBind(map);
+			bind.stream().forEach(x -> {
+				System.out.println(x.getdName());
+			});
+			
+			//Set<Dept> listById = mapper.getListByIds(Arrays.asList(10, 20));
+			//Set<Dept> listById = mapper.getListById(new Integer[] {10, 20});
+			//System.out.println(listById.size());
+			
+			/*
+			Map<String, List<Integer>> map = new HashMap<>();
+			map.put("kkk", Arrays.asList(10, 20));
+			List<Dept> listById = mapper.getListByIdsForMap(map);
+			System.out.println(listById.size());
+			*/
+			
+			
+			
 
 			// EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
 //			List<Emp> emp = mapper.getEmp();

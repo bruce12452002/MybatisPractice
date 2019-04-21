@@ -2,6 +2,7 @@ package mp.bean.dao;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
@@ -34,4 +35,12 @@ public interface DeptMapper {
 	public Dept getDeptAndEmpsById(int id);
 	
 	public Dept getDept2Step(int id);
+	
+	public List<Dept> getDeptsByDeptUseBind(Dept name);
+	
+	public List<Dept> getDeptsByMapUseBind(Map<String, String> map);
+	
+	public Set<Dept> getListByIds(List<Integer> ids);
+	
+	public List<Dept> getListByIdsForMap(@Param("ooo") Map<String, List<Integer>> map);
 }
