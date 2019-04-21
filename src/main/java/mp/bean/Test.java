@@ -22,13 +22,13 @@ public class Test {
 	public static void main(String[] args) {
 		InputStream is = null;
 		SqlSession sqlSession = null;
-		SqlSession sqlSession2 = null;
+		//SqlSession sqlSession2 = null;
 		try {
 			is = Resources.getResourceAsStream("mybatis-config.xml");
 			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
 			sqlSession = factory.openSession();
 			// Dept dept = sqlSession.selectOne("Dept.getDeptById", 40);
-			DeptMapper mapper = sqlSession.getMapper(DeptMapper.class);
+			//DeptMapper mapper = sqlSession.getMapper(DeptMapper.class);
 
 			// 一級快取(SqlSession快取)
 			//Dept dept1 = mapper.getDeptById(40);
@@ -112,12 +112,14 @@ public class Test {
 			});
 			*/
 			
+			/*
 			Map<String, String> map = new HashMap<>();
 			map.put("kkk", "O");
 			List<Dept> bind = mapper.getDeptsByMapUseBind(map);
 			bind.stream().forEach(x -> {
 				System.out.println(x.getdName());
 			});
+			*/
 			
 			//Set<Dept> listById = mapper.getListByIds(Arrays.asList(10, 20));
 			//Set<Dept> listById = mapper.getListById(new Integer[] {10, 20});
@@ -133,7 +135,7 @@ public class Test {
 			
 			
 
-			// EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
+			EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
 //			List<Emp> emp = mapper.getEmp();
 //			emp.forEach((e)-> {
 //				System.out.println(e.getEmpno());
@@ -146,6 +148,25 @@ public class Test {
 			// System.out.println(empById.getDept());
 			// System.out.println(empById.getDept().getdName());
 
+			/*
+			Emp e1 = new Emp();
+			e1.setEname("ccc");
+			e1.setDeptno(20);
+			Emp e2 = new Emp();
+			e2.setEname("ddd");
+			e2.setDeptno(30);
+			List<Emp> list = new ArrayList<>();
+			list.add(e1);
+			list.add(e2);
+			*/
+			//mapper.bigInsert1(list);
+			//mapper.bigInsert2(list);
+			//mapper.bigUpdate(Arrays.asList("xxx", "ooo"));
+			mapper.bigDelete(Arrays.asList("xxx", "ooo"));
+			mapper.getEmp().stream().forEach(x -> {
+				System.out.println(x.getEname());
+			});
+			//sqlSession.commit();//上面只是測試用，就不 commit了
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

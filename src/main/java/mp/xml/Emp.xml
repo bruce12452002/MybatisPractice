@@ -46,4 +46,44 @@
 	<select id="getEmpByDeptno" resultType="mp.bean.Emp">
 		select * from emp where deptno = #{id}
 	</select>
+	
+	<insert id="bigInsert1">
+		<foreach collection="emp" open="begin" close="end;" item="e">
+			insert into emp(empno, ename, job, mgr, hiredate, sal, comm, deptno)
+			values(emp_seq.nextval, #{e.ename}, #{e.job}, #{e.mgr}, #{e.hiredate}, #{e.sal}, #{e.comm}, #{e.deptno});
+		</foreach>
+	</insert>
+	
+	<insert id="bigInsert2">
+		insert into emp(empno, ename, job, mgr, hiredate, sal, comm, deptno)
+		<foreach collection="emp" close=")" item="e" separator="union all"
+			open="select emp_seq.nextval, ename, job, mgr, hiredate, sal, comm, deptno from("
+		>
+			select #{e.ename} ename, #{e.job} job, #{e.mgr} mgr, #{e.hiredate} hiredate, 
+				   #{e.sal} sal, #{e.comm} comm, #{e.deptno} deptno
+			from dual
+		</foreach>
+	</insert>
+	
+	<update id="bigUpdate">
+		<foreach collection="list" item="v" open="begin" close="end;">
+			update emp
+			<set>
+				ename = #{v}
+			</set>
+			<where>
+				ename in('aaa', 'bbb');
+			</where>
+		</foreach>
+	</update>
+	
+	<delete id="bigDelete">
+		delete from emp
+		<where>
+			ename in
+			<foreach collection="list" item="v" separator="," open="(" close=")">
+				#{v}
+			</foreach>
+		</where>
+	</delete>
 </mapper>
