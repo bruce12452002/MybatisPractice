@@ -3,20 +3,28 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<properties resource="jdbc.properties"></properties>
+	<properties resource="jdbc.properties" />
 	<settings>
 		<!-- Oracle 不知道OTHER，所以換成 NULL -->
 		<setting name="jdbcTypeForNull" value="NULL" />
 		<setting name="logImpl" value="LOG4J2" />
 		<setting name="cacheEnabled" value="true" /> <!-- 二級快取的開關 -->
 		<setting name="localCacheScope" value="STATEMENT" /> <!-- 一級快取的範圍 -->
-<!-- 		<setting name="lazyLoadingEnabled" value="true" /> -->
-<!-- 		<setting name="aggressiveLazyLoading" value="false" /> -->
+		<!-- <setting name="lazyLoadingEnabled" value="true" /> -->
+		<!-- <setting name="aggressiveLazyLoading" value="false" /> -->
 	</settings>
+
 	<typeAliases>
 		<typeAlias type="mp.bean.Dept" alias="ooo" />
-<!-- 		<package name="mp.bean" /> -->
+		<!-- <package name="mp.bean" /> -->
 	</typeAliases>
+
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageInterceptor">
+			<property name="param1" value="value1" />
+		</plugin>
+	</plugins>
+
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
@@ -29,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		</environment>
 	</environments>
 	<mappers>
-<!-- 		<package name="mp.bean.dao"/> -->
+		<!-- <package name="mp.bean.dao"/> -->
 		<mapper resource="mp/xml/Dept.xml" />
 		<mapper resource="mp/xml/Emp.xml" />
 	</mappers>
