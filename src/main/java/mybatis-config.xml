@@ -37,8 +37,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		</environment>
 	</environments>
 	<mappers>
-		<!-- <package name="mp.bean.dao"/> -->
-		<mapper resource="mp/xml/Dept.xml" />
-		<mapper resource="mp/xml/Emp.xml" />
+		<package name="mp.bean.dao"/>
+<!-- 		<mapper resource="mp/xml/Dept.xml" /> -->
+<!-- 		<mapper resource="mp/xml/Dept2.xml" /> -->
+<!-- 		<mapper resource="mp/xml/Emp.xml" /> -->
 	</mappers>
 </configuration>
